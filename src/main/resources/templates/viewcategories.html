@@ -1,0 +1,17 @@
+<table>
+    <thead>
+        <tr>
+            <th> Sr. No </th>
+            <th> Name </th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${list.empty}">
+            <td colspan="2"> No Books Available </td>
+        </tr>
+        <tr th:each="category : ${list}">
+            <td><span th:text="${category.id}"> Title </span></td>
+            <td><span th:text="${category.name}"> Author </span></td>
+        </tr>
+    </tbody>
+</table>
