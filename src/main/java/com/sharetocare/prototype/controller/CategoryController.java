@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,16 +25,10 @@ import com.sharetocare.prototype.respository.CategoryRepository;
 import com.sharetocare.prototype.service.CategoryService;
 
 @RestController
+@CrossOrigin("*")
 public class CategoryController {
 	
-	
-	//Using Application Property Value
-	@Value("${spring.application.name}")
-	private String name;
-	
-	@Value("${path.url}")
-	private String pathUrl;
-	
+
 	@Autowired
 	private CategoryService categoryService;
 	
@@ -41,19 +36,7 @@ public class CategoryController {
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
-	
-	
-	@GetMapping("/name")
-	public String myapp()
-	{
-		return name;
-	}
-	
-	@GetMapping("/pathurl")
-	public String my()
-	{
-		return pathUrl;
-	}
+
 	
 	@GetMapping("/category")
 	public ResponseEntity<Response> getAll()
@@ -101,10 +84,11 @@ List<Category> result = categoryRepository.findByName(name);
 	@DeleteMapping("/category/{id}")
 	public ResponseEntity<Object> delete(@PathVariable Long id)
 	{
-		//categoryService.delete(id);
 		
 		Optional<Category> categoryOptional = categoryRepository.findById(id);
 		if (categoryOptional.isPresent()) {
+		
+			categoryService.delete(id);
 			return new ResponseEntity<>(Response.success(), HttpStatus.OK);
 			
 		} else {
