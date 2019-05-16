@@ -1,12 +1,14 @@
 package com.sharetocare.prototype.model;
 
+import com.sharetocare.prototype.model.audit.DateAudit;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Category {
+public class Category extends DateAudit {
 
 	
 	@Id
