@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -58,9 +58,9 @@ public class CategoryController {
 	
 	
 	@GetMapping("/category/search/{name}")
-	public ResponseEntity<Response> get(@PathVariable String name)
+	public ResponseEntity<Response> getByName(@PathVariable String name)
 	{
-List<Category> result = categoryRepository.findByName(name);
+List<Category> result = categoryRepository.findByNameContaining(name);
 		return new ResponseEntity<Response>(Response.success(result),HttpStatus.OK);
 	}
 	
