@@ -3,10 +3,7 @@ package com.sharetocare.prototype.model;
 
 import com.sharetocare.prototype.model.audit.DateAudit;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Item extends DateAudit {
@@ -22,6 +19,10 @@ public class Item extends DateAudit {
     private  Long id;
 
     private  String name;
+
+
+    @OneToOne
+    SubCategory subCategory;
 
 
 
