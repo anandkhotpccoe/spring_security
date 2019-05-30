@@ -44,6 +44,23 @@ public class SubCategory extends DateAudit {
         this.name = name;
     }
 
+/*
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Set<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Item> items) {
+        this.items = items;
+    }*/
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
