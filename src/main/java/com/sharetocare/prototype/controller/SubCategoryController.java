@@ -33,6 +33,7 @@ public class SubCategoryController {
     @GetMapping("/{categoryId}/subcategory")
     public ResponseEntity<Response> getSubCategoryByCategoryId(@PathVariable Long categoryId)
     {
+
         Iterable<SubCategory> result = subCategoryService.getSubCategoryByCategoryId(categoryId);
         return  new ResponseEntity<>(Response.success(result),HttpStatus.OK);
     }

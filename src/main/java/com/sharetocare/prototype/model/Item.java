@@ -1,6 +1,7 @@
 package com.sharetocare.prototype.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sharetocare.prototype.model.audit.DateAudit;
 
 import javax.persistence.*;
@@ -20,8 +21,9 @@ public class Item extends DateAudit {
 
     private  String name;
 
-
+    @JsonIgnore
     @OneToOne
+    @JoinColumn(updatable = false)
     SubCategory subCategory;
 
 
@@ -40,5 +42,14 @@ public class Item extends DateAudit {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+
+    public SubCategory getSubCategory() {
+        return subCategory;
+    }
+
+    public void setSubCategory(SubCategory subCategory) {
+        this.subCategory = subCategory;
     }
 }

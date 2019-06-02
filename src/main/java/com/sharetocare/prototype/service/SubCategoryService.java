@@ -1,6 +1,6 @@
 package com.sharetocare.prototype.service;
 
-import com.sharetocare.prototype.model.Item;
+
 import com.sharetocare.prototype.model.SubCategory;
 
 public interface SubCategoryService {
@@ -8,7 +8,7 @@ public interface SubCategoryService {
 
     public Iterable<SubCategory> getAll();
 
-    public SubCategory add(SubCategory item, Long categoryId);
+    public SubCategory add(SubCategory subCategory, Long categoryId);
 
     public SubCategory update(SubCategory subCategory);
 
