@@ -3,6 +3,7 @@ package com.sharetocare.prototype.service.impl;
 import com.sharetocare.prototype.exception.CategoryFetchException;
 import com.sharetocare.prototype.model.Item;
 import com.sharetocare.prototype.model.SubCategory;
+import com.sharetocare.prototype.respository.CategoryRepository;
 import com.sharetocare.prototype.respository.SubCategoryRepository;
 import com.sharetocare.prototype.service.SubCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,18 @@ public class SubCategoryServiceImpl implements SubCategoryService {
     SubCategoryRepository subCategoryRepository;
 
 
+    @Autowired
+    CategoryRepository categoryRepository;
+
+
     @Override
     public Iterable<SubCategory> getAll() {
         return subCategoryRepository.findAll();
     }
 
     @Override
-    public SubCategory add(SubCategory subCategory) {
+    public SubCategory add(SubCategory subCategory, Long categoryId) {
+        subCategory.setCategory(categoryRepository.getOne(categoryId));
         return subCategoryRepository.save(subCategory);
     }
 

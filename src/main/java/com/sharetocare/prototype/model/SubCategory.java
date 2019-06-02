@@ -1,5 +1,7 @@
 package com.sharetocare.prototype.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sharetocare.prototype.model.audit.DateAudit;
 
 import javax.persistence.*;
@@ -9,6 +11,7 @@ import java.util.Set;
 
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class SubCategory extends DateAudit {
 
 
@@ -21,10 +24,13 @@ public class SubCategory extends DateAudit {
 
 
     @OneToOne
+    @JsonIgnore
+    @JoinColumn(updatable = false)
     private Category category;
 
 
     @OneToMany
+    @JsonIgnore
     private Set<Item> items = new HashSet<>();
 
 
@@ -44,7 +50,6 @@ public class SubCategory extends DateAudit {
         this.name = name;
     }
 
-/*
     public Category getCategory() {
         return category;
     }
@@ -59,7 +64,7 @@ public class SubCategory extends DateAudit {
 
     public void setItems(Set<Item> items) {
         this.items = items;
-    }*/
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -73,5 +78,15 @@ public class SubCategory extends DateAudit {
     @Override
     public int hashCode() {
         return Objects.hash(id, name);
+    }
+
+    @Override
+    public String toString() {
+        return "SubCategory{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", category=" + category +
+                ", items=" + items +
+                '}';
     }
 }

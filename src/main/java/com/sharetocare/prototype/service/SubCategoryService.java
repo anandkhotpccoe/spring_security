@@ -8,9 +8,9 @@ public interface SubCategoryService {
 
     public Iterable<SubCategory> getAll();
 
-    public SubCategory add(SubCategory item);
+    public SubCategory add(SubCategory item, Long categoryId);
 
-    public SubCategory update(SubCategory item);
+    public SubCategory update(SubCategory subCategory);
 
     public SubCategory get(Long id);
 
